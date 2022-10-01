@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 
 import { AiOutlineMenu } from 'react-icons/ai';
-import { FiShoppingCart } from 'react-icons/fi';
 import { BsChatLeft } from 'react-icons/bs';
 import { RiNotification3Line } from 'react-icons/ri';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import avatar from '../data/avatar.jpg';
-import { Cart, Chat, Notification, UserProfile } from '.';
+import { Chat, Notification, UserProfile } from '.';
 import { useStateContext } from '../contexts/ContextProvider';
 import EscapeHideWrapper from '../utility/component/ESCHideWrapper';
 
@@ -56,10 +55,6 @@ const Navbar = () =>
 			}} color={currentColor} icon={<AiOutlineMenu />} />
 
 			<div className="flex">
-				<NavButton title="Cart" customFunc={() =>
-				{
-					handleClick("cart");
-				}} color={currentColor} icon={<FiShoppingCart />} />
 				<NavButton title="Chat" dotColor="#03C9D7" customFunc={() => handleClick("chat")} color={currentColor} icon={<BsChatLeft />} />
 				<NavButton title="Notifications" customFunc={() => handleClick("notification")} color={currentColor} icon={<RiNotification3Line />} />
 
@@ -67,7 +62,7 @@ const Navbar = () =>
 					content="Profile"
 					position="BottomCenter"
 				>
-					<div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg" onClick={() => handleClick("userProfile")}>
+					<div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-gray-150 dark:hover:bg-gray-200 dark:text-gray-50 rounded-lg" onClick={() => handleClick("userProfile")}>
 						<img
 							src={avatar}
 							alt="avatar"
@@ -77,20 +72,31 @@ const Navbar = () =>
 								Hi,
 							</span> {" "}
 							<span className="text-gray-400 font-bold ml-1 text-14">
-								Michael
+								Baburao
 							</span>
 						</p>
 						<MdKeyboardArrowDown className="text-gray-400 text-14" />
 					</div>
 				</TooltipComponent>
 
-				{isClicked.cart &&
-					<EscapeHideWrapper component="cart">
-						<Cart />
-					</ EscapeHideWrapper>}
-				{isClicked.chat && <EscapeHideWrapper component="chat"> <Chat /> </ EscapeHideWrapper>}
-				{isClicked.notification && <EscapeHideWrapper component="notification"> <Notification /> </EscapeHideWrapper>}
-				{isClicked.userProfile && <EscapeHideWrapper component="userProfile"> <UserProfile /> </EscapeHideWrapper>}
+				{
+					isClicked.chat &&
+					<EscapeHideWrapper component="chat">
+						<Chat />
+					</ EscapeHideWrapper>
+				}
+				{
+					isClicked.notification &&
+					<EscapeHideWrapper component="notification">
+						<Notification />
+					</ EscapeHideWrapper>
+				}
+				{
+					isClicked.userProfile &&
+					<EscapeHideWrapper component="userProfile">
+						<UserProfile />
+					</ EscapeHideWrapper>
+				}
 			</div>
 		</div>
 	);
